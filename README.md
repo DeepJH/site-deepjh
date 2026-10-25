@@ -14,6 +14,8 @@
   - [0002: 采用 Cloudflare Pages 托管与边缘分发](./docs/adr/0002-cloudflare-pages-deployment.md)
   - [0003: 浅色优先的多光谱液态玻璃与双模主题架构](./docs/adr/0003-light-first-chromatic-glass-theme.md)
   - [0004: 精选项目独立深度案例剖析路由设计](./docs/adr/0004-project-case-study-routes.md)
+- 📋 **功能需求规格 (Specs)**:
+  - [0001: site-deepjh v1 首版功能规格与执行清单](./docs/specs/0001-first-version.md)
 
 ---
 
@@ -33,4 +35,5 @@
 - [x] 需求挖掘与方案推演 (Grilling rounds completed)
 - [x] 领域模型确立 (`GLOSSARY.md`)
 - [x] 核心架构决策记录 (`docs/adr/0001` ~ `0004`)
-- [ ] 代码工程脚手架初始化 (待确认后启动)
+- [x] 首版功能规格确立 (`docs/specs/0001-first-version.md`)
+- [ ] 代码工程脚手架初始化与接缝测试 (待指令启动)
