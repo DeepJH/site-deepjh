@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build and cache
+dist/
+.astro/
+
+# Testing
+test-results/
+playwright-report/
+blob-report/
+
+# Environment / local
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db

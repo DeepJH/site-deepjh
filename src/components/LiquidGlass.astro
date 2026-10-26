@@ -1,0 +1,30 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'article' | 'nav' | 'aside';
+  class?: string;
+  hoverGlow?: boolean;
+}
+
+const {
+  as: Component = 'div',
+  class: className = '',
+  hoverGlow = false,
+  ...rest
+} = Astro.props;
+---
+
+<Component
+  class:list={[
+    'relative backdrop-blur-md rounded-2xl',
+    'bg-white/65 dark:bg-zinc-900/65',
+    'border border-white/80 dark:border-white/10',
+    'shadow-[0_4px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.25)]',
+    'transition-all duration-300',
+    hoverGlow &&
+      'hover:shadow-[0_8px_30px_rgba(56,189,248,0.12)] hover:border-sky-300/60 dark:hover:border-sky-500/30',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Component>

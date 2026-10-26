@@ -1,0 +1,37 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { href: 'https://github.com/DeepJH', label: 'GitHub' },
+  { href: 'https://linkedin.com/in/deepjh', label: 'LinkedIn' },
+  { href: 'mailto:contact@deepjh.com', label: 'Email' },
+  { href: '/rss.xml', label: 'RSS' },
+];
+---
+
+<footer class="mt-20 border-t border-zinc-200/60 dark:border-zinc-800/80">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-4 py-8 text-xs text-zinc-500 sm:flex-row sm:px-6 dark:text-zinc-400"
+  >
+    <div class="flex items-center gap-2">
+      <span>&copy; {currentYear} DeepJH.</span>
+      <span class="hidden sm:inline">&bull;</span>
+      <span class="hidden sm:inline">Static-first architecture & Chromatic Liquid Glass</span>
+    </div>
+
+    <div class="flex items-center gap-5">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</footer>

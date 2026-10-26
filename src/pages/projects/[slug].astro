@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LiquidGlass from '../../components/LiquidGlass.astro';
+import { render } from 'astro:content';
+import { getPublishedProjects } from '../../utils/content';
+
+export async function getStaticPaths() {
+  const projects = await getPublishedProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, description, tags, repoUrl, demoUrl, role, timeline, metrics, publishDate } =
+  project.data;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="py-6 sm:py-10">
+    <!-- Back to projects -->
+    <a
+      href="/projects"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 transition-colors hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400"
+    >
+      &larr; Back to Projects
+    </a>
+
+    <!-- Case Study Header -->
+    <header class="mt-6">
+      <div class="flex flex-wrap gap-2">
+        {
+          tags.map((tag) => (
+            <span class="rounded-lg border border-sky-200/80 bg-sky-50/70 px-2.5 py-1 text-xs font-semibold text-sky-800 backdrop-blur-sm dark:border-sky-900/60 dark:bg-sky-950/40 dark:text-sky-300">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+
+      <h1
+        class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50"
+      >
+        {title}
+      </h1>
+
+      <p class="mt-4 text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
+        {description}
+      </p>
+    </header>
+
+    <!-- Structured Metadata & Links -->
+    <LiquidGlass class="mt-8 p-6 sm:p-8" data-case-study-meta="true">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:items-center">
+        <!-- Role & Timeline -->
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            Role & Timeline
+          </div>
+          <div class="mt-1 text-sm font-bold text-zinc-800 dark:text-zinc-100">
+            {role}
+          </div>
+          <div class="text-xs text-zinc-500 dark:text-zinc-400">
+            {timeline} &bull; Published {
+              publishDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+              })
+            }
+          </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            Primary Stack
+          </div>
+          <div class="mt-1 flex flex-wrap gap-1 text-xs text-zinc-700 dark:text-zinc-300">
+            {tags.slice(0, 3).join(' • ')}
+          </div>
+        </div>
+
+        <!-- Action Links -->
+        <div class="flex flex-wrap items-center gap-3 sm:justify-end">
+          {
+            repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-xl border border-zinc-300/80 bg-white/70 px-4 py-2 text-xs font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition-all hover:bg-white dark:border-zinc-700 dark:bg-zinc-800/70 dark:text-zinc-200 dark:hover:bg-zinc-800"
+              >
+                Source &rarr;
+              </a>
+            )
+          }
+          {
+            demoUrl && (
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+              >
+                Live System &rarr;
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Quantified Metrics Highlights -->
+      {
+        metrics && metrics.length > 0 && (
+          <div
+            class="mt-6 border-t border-zinc-200/60 pt-6 dark:border-zinc-800/80"
+            data-case-study-metrics="true"
+          >
+            <div class="mb-3 text-xs font-semibold uppercase tracking-wider text-sky-800 dark:text-sky-300">
+              Quantified Benchmark Metrics
+            </div>
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {metrics.map((metric) => (
+                <div class="rounded-xl border border-zinc-200/80 bg-white/50 p-3.5 text-center backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+                  <div class="text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                    {metric.label}
+                  </div>
+                  <div class="mt-1 text-lg font-bold text-zinc-900 dark:text-zinc-50">
+                    {metric.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </LiquidGlass>
+
+    <!-- Case Study Body Content -->
+    <article
+      class="prose prose-zinc mt-12 max-w-none overflow-x-auto dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight prose-a:text-sky-600 hover:prose-a:underline prose-table:overflow-x-auto dark:prose-a:text-sky-400"
+    >
+      <Content />
+    </article>
+  </div>
+</BaseLayout>

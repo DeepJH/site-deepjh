@@ -121,24 +121,24 @@ Standard Playwright E2E suites for modern Astro static sites (navigating routes,
 
 ## Implementation Checklist
 
-- [ ] **Phase 1: Project Scaffolding & Tooling**
-  - [ ] Initialize Astro project with TypeScript and Tailwind CSS
-  - [ ] Configure Tailwind theme tokens for Liquid Glass and Chromatic Substrates
-  - [ ] Configure Playwright E2E test harness for static preview verification
-- [ ] **Phase 2: Content Collections & Schemas**
-  - [ ] Define `projects` and `posts` Content Collections with Zod schemas
-  - [ ] Provide initial seed content (1 Project Case Study + 2 Technical Posts)
-- [ ] **Phase 3: Core Layouts & Theming**
-  - [ ] Implement BaseLayout with zero-FOUC inline theme script
-  - [ ] Implement Chromatic Substrate background mesh component
-  - [ ] Implement Liquid Glass card and container primitives
-  - [ ] Implement Header with responsive navigation and Theme Switcher
-  - [ ] Implement Footer with social links and RSS indicator
-- [ ] **Phase 4: Routing & Domain Pages**
-  - [ ] Implement `/` (Home) with curated Showcase and recent Posts
-  - [ ] Implement `/projects` and `/projects/[slug]` (Case Study view)
-  - [ ] Implement `/posts` and `/posts/[slug]` (Article view with Shiki highlighting)
-  - [ ] Implement `/rss.xml` and `/404` custom page
-- [ ] **Phase 5: Seam Verification**
-  - [ ] Execute `astro check` schema and type verification
-  - [ ] Execute Playwright E2E test suite covering navigation, theme toggling, and rendering
+- [x] **Phase 1: Project Scaffolding & Tooling**
+  - [x] Initialize Astro project with TypeScript and Tailwind CSS
+  - [x] Configure Tailwind theme tokens for Liquid Glass and Chromatic Substrates
+  - [x] Configure Playwright E2E test harness for static preview verification
+- [x] **Phase 2: Content Collections & Schemas**
+  - [x] Define `projects` and `posts` Content Collections with Zod schemas
+  - [x] Provide initial seed content (1 Project Case Study + 2 Technical Posts)
+- [x] **Phase 3: Core Layouts & Theming**
+  - [x] Implement BaseLayout with zero-FOUC inline theme script
+  - [x] Implement Chromatic Substrate background mesh component
+  - [x] Implement Liquid Glass card and container primitives
+  - [x] Implement Header with responsive navigation and Theme Switcher
+  - [x] Implement Footer with social links and RSS indicator
+- [x] **Phase 4: Routing & Domain Pages**
+  - [x] Implement `/` (Home) with curated Showcase and recent Posts
+  - [x] Implement `/projects` and `/projects/[slug]` (Case Study view)
+  - [x] Implement `/posts` and `/posts/[slug]` (Article view with Shiki highlighting)
+  - [x] Implement `/rss.xml` and `/404` custom page
+- [x] **Phase 5: Seam Verification**
+  - [x] Execute `astro check` schema and type verification
+  - [x] Execute Playwright E2E test suite covering navigation, theme toggling, and rendering
