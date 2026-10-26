@@ -22,11 +22,16 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
   - Position statement: *"Engineering autonomous agent workflows & high-craft full-stack web architectures."*
   - 3 Core Engineering Principles: Autonomous Workflows, Tactile Craft, Lean & Local-First.
 
-- **Liquid Glass Pill Morphology & Hover Lens Distortion**:
-  - Transition container styling from rounded rectangles to Pill Capsule Morphology (`rounded-full`) for navigation, badges, and interactive controls.
+- **Authentic Liquid Glass Port (`rdev/liquid-glass-react`) & Pill Morphology**:
+  - Transition container styling to Pill Capsule Morphology (`rounded-full`) for navigation shells, badges, and interactive controls.
+  - Implement an authentic, zero-runtime architectural port of `rdev/liquid-glass-react`:
+    1. **Precomputed Displacement Normal Map**: Embed the high-fidelity spherical lens displacement normal map from `rdev/liquid-glass-react` into an SVG `<feImage>` filter instead of relying on chaotic procedural noise.
+    2. **Edge Masking (`EDGE_MASK`)**: Utilize `<feColorMatrix>` and radial mask compositions to concentrate refraction strictly along the capsule's curved perimeter, keeping the center crystalline and high-transmittance.
+    3. **Three-Channel Chromatic Aberration (RGB Split)**: Displace Red, Green, and Blue channels with independent scales and micro-offsets, recombining them via `<feBlend mode="screen">` to reproduce Apple-grade prismatic dispersion at pill rims.
+    4. **DOM Layer Separation (`.glass__warp`)**: Cleanly separate the optical warp layer (`.glass__warp`) from foreground children, ensuring user text and icons remain razor-sharp while background substrates undergo realistic refraction.
+    5. **Zero Client-Side JS Runtime**: Operate 100% via declarative SVG `<filter>` and CSS `backdrop-filter`/`filter` styling, preserving our zero-runtime JS baseline.
   - Reduce blur to 75% (~9px) and adjust background opacity (`bg-white/35 dark:bg-zinc-900/40`) for crystalline transmittance and clarity.
   - Boost Chromatic Substrate saturation by 120% (increase gradient glow opacity by 20% in `ChromaticSubstrate.astro`).
-  - Implement button hover optical lens distortion (SVG `<feDisplacementMap>` + CSS scale transition) inspired by `rdev/liquid-glass-react` while strictly maintaining the Zero-Runtime JS Baseline.
 
 - **Curated 2×2 Project Showcase**:
   - Curate exactly 4 real GitHub projects in a balanced 2×2 grid:
@@ -87,7 +92,8 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
 - [ ] Title canonicalized to `Hello, Im DeepJH.` across layouts.
 - [ ] Contact details updated (domain `https://hereisdeepjh.dpdns.org`, email `deepjhshenjing@gmail.com`, LinkedIn removed).
 - [ ] Liquid Glass updated with pill morphology (`rounded-full`), 75% blur (~9px), crystalline transmittance, and 120% substrate saturation.
-- [ ] Zero-runtime SVG displacement lens hover filter applied to interactive buttons.
+- [ ] Authentic `rdev/liquid-glass-react` SVG filter pipeline implemented (displacement map, edge mask, 3-channel RGB chromatic aberration, DOM layer separation `.glass__warp`).
+- [ ] Foreground text and interactive controls remain sharp without distorted text glyphs.
 - [ ] 4 real projects implemented in Content Collections (`aitopschool-downloader`, `good-bye-othello`, `brief-clock`, `state-tuning-rwkv`) and displayed in 2×2 grid.
 - [ ] Flagship publication implemented linking to `DeepJH/text-note`.
 - [ ] Static bilingual routing (`/` and `/zh`) functional with header language toggle pill.

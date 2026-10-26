@@ -1,14 +1,21 @@
 ---
+// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005)
+// Decouples the optical background warp layer (.glass-warp) from foreground child content (.glass__content).
+
 interface Props {
   as?: 'div' | 'section' | 'article' | 'nav';
   class?: string;
+  contentClass?: string;
   hoverGlow?: boolean;
   pill?: boolean;
+  id?: string;
+  'data-case-study-meta'?: string;
 }
 
 const {
   as: Component = 'div',
   class: className = '',
+  contentClass = '',
   hoverGlow = false,
   pill = false,
   ...rest
@@ -17,17 +24,41 @@ const {
 
 <Component
   class:list={[
-    'relative backdrop-blur-[9px]',
+    'relative isolate group/glass',
     pill ? 'rounded-full' : 'rounded-2xl',
-    'bg-white/35 dark:bg-zinc-900/40',
-    'border border-white/70 dark:border-white/10',
-    'shadow-[0_4px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.25)]',
-    'transition-all duration-300',
-    hoverGlow &&
-      'hover:shadow-[0_8px_30px_rgba(56,189,248,0.14)] hover:border-sky-300/60 dark:hover:border-sky-500/30',
     className,
   ]}
   {...rest}
 >
-  <slot />
+  <!-- Optical Background Warp Layer: handles refraction, blur, saturation, and glass bevel highlights -->
+  <span
+    aria-hidden="true"
+    class:list={[
+      'glass-warp pointer-events-none absolute inset-0 -z-10 overflow-hidden',
+      pill ? 'rounded-full' : 'rounded-2xl',
+      // Crystalline transmittance tint matching Spec L33
+      'bg-white/35 dark:bg-zinc-900/40',
+      // Specular rim border
+      'border border-white/80 dark:border-white/15',
+      // Physical glass bevel inset highlight + soft ambient elevation shadow
+      'shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.95),inset_0_-1px_2px_0_rgba(0,0,0,0.03),0_8px_32px_0_rgba(0,0,0,0.05)]',
+      'dark:shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.2),inset_0_-1px_2px_0_rgba(0,0,0,0.4),0_8px_32px_0_rgba(0,0,0,0.35)]',
+      'transition-all duration-300',
+      hoverGlow && [
+        'group-hover/glass:border-sky-300/80 dark:group-hover/glass:border-sky-500/40',
+        'group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,1),0_12px_36px_0_rgba(56,189,248,0.2)]',
+        'dark:group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.3),0_12px_36px_0_rgba(56,189,248,0.25)]',
+      ],
+    ]}
+  >
+    <!-- Surface tension sheen reflection (top-down micro specular gradient) -->
+    <span
+      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/35 via-white/10 to-transparent dark:from-white/10 dark:via-transparent dark:to-transparent"
+    ></span>
+  </span>
+
+  <!-- Foreground Content Isolation Layer: keeps text and children 100% sharp -->
+  <div class:list={['glass__content relative z-10 w-full', contentClass]}>
+    <slot />
+  </div>
 </Component>
