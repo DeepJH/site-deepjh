@@ -2,6 +2,8 @@
 
 > **DeepJH** 个人工程作品集与技术博客。基于 Astro + Tailwind CSS 构建，轻量、极速，采用浅色优先的彩色液态玻璃（Chromatic Liquid Glass）与现代工程美学设计。
 
+[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/DeepJH/site-deepjh)
+
 ---
 
 ## 📖 项目文档导航 (Documentation)
@@ -27,6 +29,14 @@
 - **语法着色**: Shiki (VS Code 同款静态构建期语法高亮)
 - **类型安全**: TypeScript + Zod Content Schemas
 - **托管分发**: Cloudflare Pages (全球 300+ 边缘 CDN 节点)
+
+---
+
+## 🚀 一键部署至 Cloudflare Pages
+
+点击下方按钮直接部署本项目至您个人的 Cloudflare Pages 账户：
+
+[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/DeepJH/site-deepjh)
 
 ---
 
