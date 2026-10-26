@@ -1,6 +1,6 @@
 ---
-// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005)
-// Decouples the optical background warp layer (.glass-warp) from foreground child content (.glass__content).
+// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005 & ADR 0007)
+// Decouples the optical background warp layer (.glass__warp) from foreground child content (.glass__content).
 
 interface Props {
   as?: 'div' | 'section' | 'article' | 'nav';
@@ -36,20 +36,20 @@ const {
     class:list={[
       'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
       pill
-        ? 'glass__warp glass-warp rounded-full'
+        ? 'glass__warp rounded-full'
         : 'glass-card rounded-2xl',
-      // Crystalline ultra-high-transmittance tint (~98% transmittance, zero acrylic opacity)
-      'bg-white/[0.02] dark:bg-zinc-900/[0.05]',
+      // Authentic zero-tint transparent base (100% optical refraction without milky acrylic wash)
+      'bg-transparent',
       // Specular rim border
-      'border border-white/40 dark:border-white/10',
-      // Physical glass bevel inset highlight + soft ambient elevation shadow
-      'shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.7),inset_0_-1px_1px_0_rgba(0,0,0,0.02),0_4px_20px_0_rgba(0,0,0,0.03)]',
-      'dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),inset_0_-1px_1px_0_rgba(0,0,0,0.3),0_4px_20px_0_rgba(0,0,0,0.25)]',
+      'border border-white/50 dark:border-white/15',
+      // Official rdev physical floating elevation shadow + specular bevel inset
+      'shadow-[0_12px_40px_rgba(0,0,0,0.18),inset_0_1px_1px_0_rgba(255,255,255,0.8)]',
+      'dark:shadow-[0_16px_50px_rgba(0,0,0,0.55),inset_0_1px_1px_0_rgba(255,255,255,0.15)]',
       'transition-all duration-300',
       hoverGlow && [
         'group-hover/glass:border-sky-300/80 dark:group-hover/glass:border-sky-500/40',
-        'group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.9),0_8px_24px_0_rgba(56,189,248,0.16)]',
-        'dark:group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.25),0_8px_24px_0_rgba(56,189,248,0.2)]',
+        'group-hover/glass:shadow-[0_16px_45px_rgba(56,189,248,0.22),inset_0_1px_2px_0_rgba(255,255,255,0.9)]',
+        'dark:group-hover/glass:shadow-[0_16px_45px_rgba(56,189,248,0.25),inset_0_1px_2px_0_rgba(255,255,255,0.25)]',
       ],
     ]}
   >

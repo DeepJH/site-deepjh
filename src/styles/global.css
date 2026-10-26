@@ -28,18 +28,17 @@
 }
 
 @layer components {
-  /* Authentic Liquid Glass Optical Warp Layer (Ported from rdev/liquid-glass-react) */
+  /* Authentic Liquid Glass Optical Warp Layer (Ported from rdev/liquid-glass-react per ADR 0007) */
+  .glass-card,
+  .glass__warp,
+  .glass-warp {
+    backdrop-filter: blur(7.2px) saturate(130%);
+    -webkit-backdrop-filter: blur(7.2px) saturate(130%);
+  }
+
   .glass__warp,
   .glass-warp {
     filter: url(#liquid-glass-refraction);
-    backdrop-filter: blur(1.5px) saturate(140%);
-    -webkit-backdrop-filter: blur(1.5px) saturate(140%);
-  }
-
-  /* Ultra-Clear Card Backdrop Filter */
-  .glass-card {
-    backdrop-filter: blur(1.5px) saturate(140%);
-    -webkit-backdrop-filter: blur(1.5px) saturate(140%);
   }
 
   .liquid-glass-interactive,

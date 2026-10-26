@@ -9,13 +9,6 @@
   focusable="false"
 >
   <defs>
-    <!-- Radial Edge Mask Gradient -->
-    <radialGradient id="liquid-glass-radial-mask" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="black" stop-opacity="0" />
-      <stop offset="70%" stop-color="black" stop-opacity="0" />
-      <stop offset="100%" stop-color="white" stop-opacity="1" />
-    </radialGradient>
-
     <!-- Liquid Glass Optical Refraction Filter with Chromatic Aberration & Edge Masking -->
     <filter
       id="liquid-glass-refraction"
@@ -37,7 +30,7 @@
         preserveAspectRatio="none"
       />
 
-      <!-- Create edge mask from displacement intensity so the center stays crystalline -->
+      <!-- Create edge mask from displacement luminance (preserves 100% crystalline center) -->
       <feColorMatrix
         in="DISPLACEMENT_MAP"
         type="matrix"
@@ -54,11 +47,11 @@
       <!-- Center clean undisplaced original image -->
       <feOffset in="SourceGraphic" dx="0" dy="0" result="CENTER_ORIGINAL" />
 
-      <!-- Red Channel: displaced outward -->
+      <!-- Red Channel: official scale -64 -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-24"
+        scale="-64"
         xChannelSelector="R"
         yChannelSelector="B"
         result="RED_DISPLACED"
@@ -73,11 +66,11 @@
         result="RED_CHANNEL"
       />
 
-      <!-- Green Channel: displaced with slight offset -->
+      <!-- Green Channel: official scale -70.4 (64 * -1.1) -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-18"
+        scale="-70.4"
         xChannelSelector="R"
         yChannelSelector="B"
         result="GREEN_DISPLACED"
@@ -92,11 +85,11 @@
         result="GREEN_CHANNEL"
       />
 
-      <!-- Blue Channel: displaced with chromatic divergence -->
+      <!-- Blue Channel: official scale -76.8 (64 * -1.2) -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-12"
+        scale="-76.8"
         xChannelSelector="R"
         yChannelSelector="B"
         result="BLUE_DISPLACED"
@@ -115,8 +108,8 @@
       <feBlend in="GREEN_CHANNEL" in2="BLUE_CHANNEL" mode="screen" result="GB_COMBINED" />
       <feBlend in="RED_CHANNEL" in2="GB_COMBINED" mode="screen" result="RGB_COMBINED" />
 
-      <!-- Micro-blur to soften optical dispersion -->
-      <feGaussianBlur in="RGB_COMBINED" stdDeviation="0.4" result="ABERRATED_BLURRED" />
+      <!-- Micro-blur to soften optical dispersion (official rdev stdDeviation: 0.3) -->
+      <feGaussianBlur in="RGB_COMBINED" stdDeviation="0.3" result="ABERRATED_BLURRED" />
 
       <!-- Composite edge aberration onto edge mask -->
       <feComposite in="ABERRATED_BLURRED" in2="EDGE_MASK" operator="in" result="EDGE_ABERRATION" />

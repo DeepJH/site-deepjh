@@ -14,6 +14,7 @@ When working in this repository, always align with the following documented sour
    - [ADR 0004: Dedicated Case Study Routes](./docs/adr/0004-project-case-study-routes.md)
    - [ADR 0005: Liquid Glass Pill Morphology and Lens Distortion](./docs/adr/0005-liquid-glass-pill-morphology-and-lens-distortion.md)
    - [ADR 0006: Static Bilingual Routing and Digital Garden Syndication](./docs/adr/0006-bilingual-routing-and-digital-garden-syndication.md)
+   - [ADR 0007: Official rdev Liquid Glass Rebuild and Vibrant Chromatic Substrate](./docs/adr/0007-official-rdev-liquid-glass-and-vibrant-substrate.md)
 3. **Feature Specifications**: Read active specs under [`docs/specs/`](./docs/specs/). All scope, user stories, and acceptance criteria live here.
 
 ## 🧪 Testing Seam Principle

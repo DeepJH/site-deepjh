@@ -16,7 +16,7 @@ We decided to execute an authentic, zero-runtime architectural port of **`rdev/l
 6. **Zero Client-Side JS Runtime**: The entire displacement map, edge mask, and chromatic aberration pipeline operates 100% via declarative SVG `<filter>` and CSS `backdrop-filter`/`filter` styling, preserving our zero-runtime JS baseline.
 
 ## Status
-Accepted
+Superseded by [ADR 0007](./0007-official-rdev-liquid-glass-and-vibrant-substrate.md) (optical parameters and substrate integration)
 
 ## Considered Options
 - **Retain Rounded-Rectangle with Static Blur**: Safe and standard, but lacks tactile fluidity and distinct visual personality.
