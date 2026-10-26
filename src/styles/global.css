@@ -32,8 +32,14 @@
   .glass__warp,
   .glass-warp {
     filter: url(#liquid-glass-refraction);
-    backdrop-filter: blur(4.5px) saturate(140%);
-    -webkit-backdrop-filter: blur(4.5px) saturate(140%);
+    backdrop-filter: blur(1.5px) saturate(140%);
+    -webkit-backdrop-filter: blur(1.5px) saturate(140%);
+  }
+
+  /* Ultra-Clear Card Backdrop Filter */
+  .glass-card {
+    backdrop-filter: blur(1.5px) saturate(140%);
+    -webkit-backdrop-filter: blur(1.5px) saturate(140%);
   }
 
   .liquid-glass-interactive,

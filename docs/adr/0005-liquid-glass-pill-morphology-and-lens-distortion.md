@@ -8,10 +8,11 @@ We decided to execute an authentic, zero-runtime architectural port of **`rdev/l
 2. **Precomputed Displacement Normal Map**: Embed the high-fidelity spherical lens displacement normal map from `rdev/liquid-glass-react` into an SVG `<feImage>` filter instead of relying on chaotic procedural noise.
 3. **Selective Edge Masking (`EDGE_MASK`)**: Utilize `<feColorMatrix>` and radial mask compositions to concentrate refraction strictly along the capsule's curved perimeter, keeping the center crystalline and high-transmittance.
 4. **Three-Channel Chromatic Aberration (RGB Split)**: Displace Red, Green, and Blue channels with independent scales and micro-offsets, recombining them via `<feBlend mode="screen">` to reproduce Apple-grade prismatic dispersion at pill rims.
-5. **Hyper-Transparent Optical Tuning (50% Blur Reduction & Zero-Acrylic Transmittance)**:
-   - Blur reduced by 50% from 9px to **4.5px** (`backdrop-blur-[4.5px]`), ensuring background typography remains crisp and legible under scrolling pills rather than muddy black smudges.
-   - Tint opacity reduced from 35% to **12%** (`bg-white/12 dark:bg-zinc-900/18`) to eliminate thick milky "acrylic plastic" opacity and achieve true water-like crystal transmittance.
-   - Displacement scale re-tuned to **-10 to -12** (down from -42) to eliminate dirty dark edge tearing and dark fringe artifacts along curved pill boundaries.
+5. **Optical Parameter Evolution & Ultra-Clear Tuning (98% Transmittance & Vivid Chromatic Dispersion)**:
+   - *Evolutionary trajectory*: Evolved from initial 4.5px blur / 12% tint (~88% transmittance) to eliminate all residual milky fog.
+   - *Near-zero blur*: Blur reduced to **1.5px** (`backdrop-blur-[1.5px]`), ensuring background typography and substrates remain ultra-crisp under scrolling pills.
+   - *Ultra-clear transmittance*: Tint opacity reduced to **2%** (`bg-white/[0.02] dark:bg-zinc-900/[0.05]`) for **~98% crystalline transmittance**, defined cleanly by specular bevel highlights and delicate borders.
+   - *Vivid chromatic aberration & lens distortion*: RGB channels split into distinct scales (**Red: -24, Green: -18, Blue: -12**), creating a pronounced prism spectrum along curved pill rims while preserving a completely undisturbed central optical window via `EDGE_MASK`.
 6. **Zero Client-Side JS Runtime**: The entire displacement map, edge mask, and chromatic aberration pipeline operates 100% via declarative SVG `<filter>` and CSS `backdrop-filter`/`filter` styling, preserving our zero-runtime JS baseline.
 
 ## Status

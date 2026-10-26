@@ -37,13 +37,13 @@ const {
       'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
       pill
         ? 'glass__warp glass-warp rounded-full'
-        : 'rounded-2xl backdrop-blur-[4.5px] saturate-[140%]',
-      // Crystalline high-transmittance tint (~88% transmittance, zero acrylic opacity)
-      'bg-white/12 dark:bg-zinc-900/18',
+        : 'glass-card rounded-2xl',
+      // Crystalline ultra-high-transmittance tint (~98% transmittance, zero acrylic opacity)
+      'bg-white/[0.02] dark:bg-zinc-900/[0.05]',
       // Specular rim border
-      'border border-white/60 dark:border-white/15',
+      'border border-white/40 dark:border-white/10',
       // Physical glass bevel inset highlight + soft ambient elevation shadow
-      'shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.85),inset_0_-1px_1px_0_rgba(0,0,0,0.02),0_4px_20px_0_rgba(0,0,0,0.03)]',
+      'shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.7),inset_0_-1px_1px_0_rgba(0,0,0,0.02),0_4px_20px_0_rgba(0,0,0,0.03)]',
       'dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),inset_0_-1px_1px_0_rgba(0,0,0,0.3),0_4px_20px_0_rgba(0,0,0,0.25)]',
       'transition-all duration-300',
       hoverGlow && [
@@ -55,7 +55,7 @@ const {
   >
     <!-- Surface tension sheen reflection (top-down micro specular gradient) -->
     <span
-      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/20 via-white/5 to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent"
+      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/15 via-white/[0.02] to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent"
     ></span>
   </span>
 
