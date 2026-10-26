@@ -1,0 +1,89 @@
+---
+import LiquidGlass from './LiquidGlass.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, description, tags, coverImage, metrics } = project.data;
+---
+
+<LiquidGlass
+  as="article"
+  hoverGlow={true}
+  class="flex flex-col justify-between overflow-hidden p-6 sm:p-8"
+  data-project-card="true"
+>
+  <div>
+    <!-- Cover Image (if present) -->
+    {
+      coverImage && (
+        <div class="mb-5 overflow-hidden rounded-xl border border-zinc-200/60 dark:border-zinc-800/80">
+          <img
+            src={coverImage}
+            alt={`${title} Architecture Visual`}
+            class="h-44 w-full object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+
+    <!-- Tags -->
+    <div class="mb-4 flex flex-wrap gap-1.5">
+      {
+        tags.map((tag) => (
+          <span class="rounded-md border border-zinc-200/80 bg-zinc-100/70 px-2 py-0.5 text-xs font-medium text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Title & Description -->
+    <h3 class="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-sky-600 dark:text-zinc-50 dark:group-hover:text-sky-400">
+      <a
+        href={`/projects/${project.id}`}
+        data-case-study-link="true"
+        class="hover:underline focus:outline-none"
+      >
+        {title}
+      </a>
+    </h3>
+
+    <p class="mt-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+      {description}
+    </p>
+
+    <!-- Metrics highlights -->
+    {
+      metrics && metrics.length > 0 && (
+        <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {metrics.slice(0, 3).map((metric) => (
+            <div class="rounded-xl border border-sky-200/60 bg-sky-50/50 p-2 text-center backdrop-blur-sm dark:border-sky-900/40 dark:bg-sky-950/30">
+              <div class="text-[10px] font-medium uppercase tracking-wider text-sky-800 dark:text-sky-300">
+                {metric.label}
+              </div>
+              <div class="mt-0.5 text-xs font-bold text-sky-950 dark:text-sky-200">
+                {metric.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Dedicated Case Study Link -->
+  <div class="mt-6 flex items-center justify-between border-t border-zinc-200/60 pt-4 dark:border-zinc-800/80">
+    <a
+      href={`/projects/${project.id}`}
+      data-case-study-link="true"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+    >
+      Read Full Case Study &rarr;
+    </a>
+  </div>
+</LiquidGlass>

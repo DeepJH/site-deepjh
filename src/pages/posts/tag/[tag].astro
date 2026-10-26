@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LiquidGlass from '../../../components/LiquidGlass.astro';
+import { getPublishedPosts } from '../../../utils/content';
+
+export async function getStaticPaths() {
+  const publishedPosts = await getPublishedPosts();
+  const allTags = Array.from(
+    new Set(publishedPosts.flatMap((post) => post.data.tags))
+  );
+
+  return allTags.map((tag) => ({
+    params: { tag },
+    props: { currentTag: tag },
+  }));
+}
+
+interface Props {
+  currentTag: string;
+}
+
+const { currentTag } = Astro.props;
+const publishedPosts = await getPublishedPosts();
+const filteredPosts = publishedPosts.filter((post) =>
+  post.data.tags.includes(currentTag)
+);
+
+const allTags = Array.from(
+  new Set(publishedPosts.flatMap((post) => post.data.tags))
+).sort();
+---
+
+<BaseLayout
+  title={`Posts tagged "${currentTag}" — Technical Publications`}
+  description={`Technical essays and system engineering tutorials tagged with ${currentTag}.`}
+>
+  <header class="py-8 sm:py-12">
+    <div
+      class="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-50/80 px-3 py-1 text-xs font-semibold text-sky-700 backdrop-blur-sm dark:border-sky-500/20 dark:bg-sky-950/40 dark:text-sky-300"
+    >
+      Filtered by Tag
+    </div>
+    <h1
+      class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-50"
+    >
+      Articles tagged &ldquo;{currentTag}&rdquo;
+    </h1>
+    <p class="mt-3 max-w-2xl text-base text-zinc-600 dark:text-zinc-300">
+      Showing {filteredPosts.length} article{filteredPosts.length === 1 ? '' : 's'} categorized under
+      <span class="font-semibold text-zinc-900 dark:text-zinc-100">{currentTag}</span>.
+    </p>
+
+    <!-- Static Zero-Runtime JS Tag Filter Links -->
+    <div class="mt-8 flex flex-wrap items-center gap-2" id="tag-filters">
+      <a
+        href="/posts"
+        data-filter="all"
+        class="rounded-xl border border-zinc-200/80 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-600 transition-all hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/60 dark:text-zinc-400 dark:hover:text-zinc-100"
+      >
+        All ({publishedPosts.length})
+      </a>
+      {
+        allTags.map((tag) => {
+          const isActive = tag === currentTag;
+          const count = publishedPosts.filter((p) => p.data.tags.includes(tag)).length;
+          return (
+            <a
+              href={`/posts/tag/${encodeURIComponent(tag)}`}
+              data-filter={tag}
+              class:list={[
+                'rounded-xl px-3 py-1 text-xs transition-all',
+                isActive
+                  ? 'border border-sky-400/40 bg-sky-50 font-semibold text-sky-700 dark:border-sky-500/30 dark:bg-sky-950/50 dark:text-sky-300'
+                  : 'border border-zinc-200/80 bg-white/60 font-medium text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/60 dark:text-zinc-400 dark:hover:text-zinc-100',
+              ]}
+            >
+              {tag} ({count})
+            </a>
+          );
+        })
+      }
+    </div>
+  </header>
+
+  <div class="space-y-6" id="posts-container">
+    {
+      filteredPosts.map((post) => (
+        <LiquidGlass
+          as="article"
+          hoverGlow={true}
+          class="p-6 sm:p-8"
+          data-post-item="true"
+        >
+          <div class="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+            <time datetime={post.data.publishDate.toISOString()}>
+              {post.data.publishDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </time>
+            {post.data.readingTime && (
+              <>
+                <span>&bull;</span>
+                <span data-reading-time="true">{post.data.readingTime}</span>
+              </>
+            )}
+          </div>
+
+          <h2 class="mt-3 text-xl font-bold tracking-tight text-zinc-900 group-hover:text-sky-600 dark:text-zinc-50 dark:group-hover:text-sky-400">
+            <a
+              href={`/posts/${post.id}`}
+              data-post-link="true"
+              class="hover:underline focus:outline-none"
+            >
+              {post.data.title}
+            </a>
+          </h2>
+
+          <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+            {post.data.description}
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200/60 pt-4 dark:border-zinc-800/80">
+            <div class="flex flex-wrap gap-1.5">
+              {post.data.tags.map((tag) => (
+                <a
+                  href={`/posts/tag/${encodeURIComponent(tag)}`}
+                  class:list={[
+                    'rounded-md px-2 py-0.5 text-xs font-medium',
+                    tag === currentTag
+                      ? 'border border-sky-300 bg-sky-100 text-sky-800 dark:border-sky-800 dark:bg-sky-900/60 dark:text-sky-200'
+                      : 'border border-zinc-200/80 bg-zinc-100/70 text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300',
+                  ]}
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+
+            <a
+              href={`/posts/${post.id}`}
+              data-post-link="true"
+              class="text-xs font-semibold text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+            >
+              Read full article &rarr;
+            </a>
+          </div>
+        </LiquidGlass>
+      ))
+    }
+  </div>
+</BaseLayout>
