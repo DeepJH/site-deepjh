@@ -12,12 +12,15 @@ When working in this repository, always align with the following documented sour
    - [ADR 0002: Cloudflare Pages Deployment](./docs/adr/0002-cloudflare-pages-deployment.md)
    - [ADR 0003: Light-First Chromatic Liquid Glass](./docs/adr/0003-light-first-chromatic-glass-theme.md)
    - [ADR 0004: Dedicated Case Study Routes](./docs/adr/0004-project-case-study-routes.md)
+   - [ADR 0005: Liquid Glass Pill Morphology and Lens Distortion](./docs/adr/0005-liquid-glass-pill-morphology-and-lens-distortion.md)
+   - [ADR 0006: Static Bilingual Routing and Digital Garden Syndication](./docs/adr/0006-bilingual-routing-and-digital-garden-syndication.md)
 3. **Feature Specifications**: Read active specs under [`docs/specs/`](./docs/specs/). All scope, user stories, and acceptance criteria live here.
 
 ## 🧪 Testing Seam Principle
 
 Do NOT write unit tests asserting internal component markup or class names.
 All automated verification must operate on the **single highest seam**:
+
 - **Compile-time**: `pnpm astro check` & `tsc --noEmit` to validate Content Collection schemas.
 - **Runtime E2E**: `pnpm test` (Playwright) against the pre-built static preview (`pnpm build && pnpm preview`), validating external user observable behaviors: HTTP 200 responses, navigation, theme toggle persistence, and accessibility.
 
@@ -31,14 +34,17 @@ All automated verification must operate on the **single highest seam**:
 对于所有功能开发、需求变更或重大重构任务，Agent 必须严格遵循以下六步闭环流程。
 
 > [!IMPORTANT] **交互边界与自动化执行铁律**
+>
 > - **人机交互唯一节点**：只有**第 1 步 (`grill-with-docs`)** 保持与用户的交互式问答与方案对齐。
 > - **全程自动推进**：一旦用户明确确认无误，**第 2 步至第 6 步（规格沉淀 → 双轨建单 → 测试驱动实现 → 双轴审查与修复 → 交付与状态流转）必须完全自主、全自动流水线式闭环执行**，中途严禁无故中断等待用户输入。
+> - **全局工作流（重要）**：每次改动必须调用`grill-with-docs`和用户讨论以明确意图，并完成相关文档。当用户说`根据自定义工作流自动实现`时， **必须**询问是否根据 `to-spec，to-tickets，implement，code-review，修复和 in review` 这个自动实现工作流做下去。明确确认后才开始做下去。
 
 1. **意图挖掘与对齐 (`grill-with-docs` - 唯一交互节点)**:
    - 遇到新需求或构想时，首先使用 `grill-with-docs` 明确用户意图，通过结构化提问消除歧义，深挖需求边界、架构取舍与验收标准。
    - **执行门禁**：在用户明确确认无误之前，严禁擅自提前进入编码或修改代码。一旦用户确认，立即全自动进入后续流程。
+   - 做完后保存`GLOSSARY.md`和`docs/adr/000x-adr-doc-name.md`
 2. **规格沉淀 (`to-spec` - 自动执行)**:
-   - 自动将确认方案固化为 `docs/specs/` 目录下的系统功能规格说明，包含 User Stories、架构设计与验收清单。
+   - 自动将确认方案固化为 `docs/specs/000x-spec-doc-name.md` 目录下的系统功能规格说明，包含 User Stories、架构设计与验收清单。
 3. **任务拆分与建单 (`to-tickets` - 自动双轨制)**:
    - 自动依据规格文档拆解为独立可验证的垂直切片任务，建立本地与远程双轨跟踪机制：
      - **本地轨**：在 `.scratch/` 目录下创建对应的任务切片文档与核对清单，版本化归档。

@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LiquidGlass from '../../../components/LiquidGlass.astro';
+import { render } from 'astro:content';
+import { getPublishedPosts } from '../../../utils/content';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { title, description, publishDate, updatedDate, tags, readingTime } = post.data;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  article={true}
+  lang="zh"
+>
+  <div class="py-6 sm:py-10">
+    <!-- Back to posts link -->
+    <a
+      href="/zh/posts"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 transition-colors hover:text-sky-600 dark:text-zinc-400 dark:hover:text-sky-400"
+    >
+      &larr; 返回文章列表
+    </a>
+
+    <!-- Article Shell -->
+    <article class="mt-6">
+      <header>
+        <div class="flex flex-wrap items-center gap-2">
+          {
+            tags.map((tag) => (
+              <span class="rounded-full border border-sky-200/80 bg-sky-50/70 px-3 py-1 text-xs font-semibold text-sky-800 backdrop-blur-sm dark:border-sky-900/60 dark:bg-sky-950/40 dark:text-sky-300">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50">
+          {title}
+        </h1>
+
+        <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+          <time datetime={publishDate.toISOString()}>
+            发布于 {
+              publishDate.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
+          </time>
+          {
+            readingTime && (
+              <>
+                <span>&bull;</span>
+                <span>{readingTime}</span>
+              </>
+            )
+          }
+          {
+            updatedDate && (
+              <>
+                <span>&bull;</span>
+                <span>
+                  更新于{' '}
+                  {updatedDate.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+              </>
+            )
+          }
+        </div>
+
+        <LiquidGlass class="mt-6 p-5 sm:p-6">
+          <p class="text-base leading-relaxed text-zinc-700 italic dark:text-zinc-200">
+            {description}
+          </p>
+        </LiquidGlass>
+      </header>
+
+      <!-- Markdown Prose with Shiki Syntax Highlighting -->
+      <div
+        class="prose prose-zinc mt-10 max-w-none overflow-x-auto dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight prose-a:text-sky-600 hover:prose-a:underline prose-pre:rounded-2xl prose-pre:border prose-pre:border-zinc-200/80 prose-pre:shadow-sm dark:prose-pre:border-zinc-800 dark:prose-a:text-sky-400"
+      >
+        <Content />
+      </div>
+
+      <!-- Bottom Digital Garden Syndication Card -->
+      <div class="mt-12 border-t border-zinc-200/60 pt-8 dark:border-zinc-800/80">
+        <LiquidGlass class="flex flex-col sm:flex-row items-center justify-between gap-4 p-6">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">数字花园联动与公开手记</div>
+            <h4 class="mt-1 text-base font-bold text-zinc-900 dark:text-zinc-100">想查阅更多未提炼的日常攻坚手记与架构原子卡片？</h4>
+            <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-300">欢迎直接浏览支撑本文持续演进的 GitHub 开源仓库 DeepJH/text-note。</p>
+          </div>
+          <a
+            href="https://github.com/DeepJH/text-note"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="liquid-lens-btn shrink-0 rounded-full bg-zinc-900 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+          >
+            前往 Star text-note &rarr;
+          </a>
+        </LiquidGlass>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

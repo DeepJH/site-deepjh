@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Issue #6: Syndication, SEO & Resilient Error Handling', () => {
+test.describe('Syndication, SEO & Resilient Error Handling', () => {
   test('/rss.xml serves valid RSS feed of published posts', async ({ request }) => {
     const response = await request.get('/rss.xml');
     expect(response.status()).toBe(200);
@@ -8,10 +8,8 @@ test.describe('Issue #6: Syndication, SEO & Resilient Error Handling', () => {
     const xml = await response.text();
     expect(xml).toContain('<rss version="2.0"');
     expect(xml).toContain('<title>DeepJH — Technical Publications</title>');
-    expect(xml).toContain('Demystifying io_uring');
-    expect(xml).toContain('Designing Zero-Copy Network Systems');
-    expect(xml).toContain('<link>https://deepjh.com/posts/io-uring-linux-storage-engine/</link>');
-    expect(xml).not.toContain('DRAFT: Internal Work in Progress');
+    expect(xml).toContain('思维的回响');
+    expect(xml).toContain('https://hereisdeepjh.dpdns.org/posts/reflections-on-text-note');
   });
 
   test('pages contain rich OpenGraph and SEO metadata', async ({ page }) => {

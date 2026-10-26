@@ -43,7 +43,7 @@ const { Content } = await render(project);
       <div class="flex flex-wrap gap-2">
         {
           tags.map((tag) => (
-            <span class="rounded-lg border border-sky-200/80 bg-sky-50/70 px-2.5 py-1 text-xs font-semibold text-sky-800 backdrop-blur-sm dark:border-sky-900/60 dark:bg-sky-950/40 dark:text-sky-300">
+            <span class="rounded-full border border-sky-200/80 bg-sky-50/70 px-3 py-1 text-xs font-semibold text-sky-800 backdrop-blur-sm dark:border-sky-900/60 dark:bg-sky-950/40 dark:text-sky-300">
               {tag}
             </span>
           ))
@@ -112,7 +112,7 @@ const { Content } = await render(project);
                 href={repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-xl border border-zinc-300/80 bg-white/70 px-4 py-2 text-xs font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition-all hover:bg-white dark:border-zinc-700 dark:bg-zinc-800/70 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                class="liquid-lens-btn inline-flex items-center gap-2 rounded-full border border-zinc-300/80 bg-white/70 px-4 py-2 text-xs font-semibold text-zinc-800 shadow-sm backdrop-blur-sm transition-all hover:bg-white dark:border-zinc-700 dark:bg-zinc-800/70 dark:text-zinc-200 dark:hover:bg-zinc-800"
               >
                 Source &rarr;
               </a>
@@ -124,7 +124,7 @@ const { Content } = await render(project);
                 href={demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+                class="liquid-lens-btn inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
               >
                 Live System &rarr;
               </a>

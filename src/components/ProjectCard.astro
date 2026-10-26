@@ -1,6 +1,7 @@
 ---
 import LiquidGlass from './LiquidGlass.astro';
 import type { CollectionEntry } from 'astro:content';
+import { isZhLocale } from '../utils/locale';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -8,6 +9,9 @@ interface Props {
 
 const { project } = Astro.props;
 const { title, description, tags, coverImage, metrics } = project.data;
+const isZh = isZhLocale(Astro.url.pathname);
+const projectUrl = isZh ? `/zh/projects/${project.id}` : `/projects/${project.id}`;
+const ctaLabel = isZh ? '阅读完整案例分析 &rarr;' : 'Read Full Case Study &rarr;';
 ---
 
 <LiquidGlass
@@ -35,7 +39,7 @@ const { title, description, tags, coverImage, metrics } = project.data;
     <div class="mb-4 flex flex-wrap gap-1.5">
       {
         tags.map((tag) => (
-          <span class="rounded-md border border-zinc-200/80 bg-zinc-100/70 px-2 py-0.5 text-xs font-medium text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300">
+          <span class="rounded-full border border-zinc-200/80 bg-zinc-100/70 px-2.5 py-0.5 text-xs font-medium text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300">
             {tag}
           </span>
         ))
@@ -45,7 +49,7 @@ const { title, description, tags, coverImage, metrics } = project.data;
     <!-- Title & Description -->
     <h3 class="text-xl font-bold tracking-tight text-zinc-900 group-hover:text-sky-600 dark:text-zinc-50 dark:group-hover:text-sky-400">
       <a
-        href={`/projects/${project.id}`}
+        href={projectUrl}
         data-case-study-link="true"
         class="hover:underline focus:outline-none"
       >
@@ -79,11 +83,10 @@ const { title, description, tags, coverImage, metrics } = project.data;
   <!-- Dedicated Case Study Link -->
   <div class="mt-6 flex items-center justify-between border-t border-zinc-200/60 pt-4 dark:border-zinc-800/80">
     <a
-      href={`/projects/${project.id}`}
+      href={projectUrl}
       data-case-study-link="true"
       class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
-    >
-      Read Full Case Study &rarr;
-    </a>
+      set:html={ctaLabel}
+    />
   </div>
 </LiquidGlass>

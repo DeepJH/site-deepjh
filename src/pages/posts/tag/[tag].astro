@@ -55,7 +55,7 @@ const allTags = Array.from(
       <a
         href="/posts"
         data-filter="all"
-        class="rounded-xl border border-zinc-200/80 bg-white/60 px-3 py-1 text-xs font-medium text-zinc-600 transition-all hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/60 dark:text-zinc-400 dark:hover:text-zinc-100"
+        class="rounded-full border border-zinc-200/80 bg-white/60 px-3.5 py-1 text-xs font-medium text-zinc-600 transition-all hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/60 dark:text-zinc-400 dark:hover:text-zinc-100"
       >
         All ({publishedPosts.length})
       </a>
@@ -68,7 +68,7 @@ const allTags = Array.from(
               href={`/posts/tag/${encodeURIComponent(tag)}`}
               data-filter={tag}
               class:list={[
-                'rounded-xl px-3 py-1 text-xs transition-all',
+                'rounded-full px-3 py-1 text-xs transition-all',
                 isActive
                   ? 'border border-sky-400/40 bg-sky-50 font-semibold text-sky-700 dark:border-sky-500/30 dark:bg-sky-950/50 dark:text-sky-300'
                   : 'border border-zinc-200/80 bg-white/60 font-medium text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 dark:border-zinc-700/80 dark:bg-zinc-800/60 dark:text-zinc-400 dark:hover:text-zinc-100',

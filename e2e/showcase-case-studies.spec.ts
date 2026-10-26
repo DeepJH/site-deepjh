@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Issue #4: Curated Showcase & Project Case Studies', () => {
-  test('homepage displays curated showcase of 3-6 projects and navigates to case study', async ({
+test.describe('Curated 2x2 Showcase & Project Case Studies', () => {
+  test('homepage displays curated showcase of 4 projects and navigates to case study', async ({
     page,
   }) => {
     await page.goto('/');
@@ -9,15 +9,17 @@ test.describe('Issue #4: Curated Showcase & Project Case Studies', () => {
     const showcaseSection = page.locator('#showcase');
     await expect(showcaseSection).toBeVisible();
 
-    // 3 to 6 featured project cards exist
+    // Exactly 4 featured project cards in 2x2 grid
     const projectCards = showcaseSection.locator('[data-project-card="true"]');
     const cardCount = await projectCards.count();
-    expect(cardCount).toBeGreaterThanOrEqual(3);
-    expect(cardCount).toBeLessThanOrEqual(6);
+    expect(cardCount).toBe(4);
 
-    // The card has title, description, and tags
-    const firstCardTitle = await projectCards.first().locator('h3').textContent();
-    expect(firstCardTitle?.trim().length).toBeGreaterThan(0);
+    // Assert the 4 repositories are present
+    const showcaseText = await showcaseSection.textContent();
+    expect(showcaseText).toContain('aitopschool-downloader');
+    expect(showcaseText).toContain('good-bye-othello');
+    expect(showcaseText).toContain('brief-clock');
+    expect(showcaseText).toContain('State Tuning Tutorial For RWKV');
 
     // Click through to case study
     await projectCards.first().locator('a[data-case-study-link="true"]').first().click();
@@ -33,22 +35,18 @@ test.describe('Issue #4: Curated Showcase & Project Case Studies', () => {
     const metadataSection = page.locator('[data-case-study-meta="true"]');
     await expect(metadataSection).toBeVisible();
     await expect(metadataSection).toContainText('Role & Timeline');
-
-    // Complete non-truncated architecture stack
     await expect(metadataSection).toContainText('Architecture Stack');
-    await expect(metadataSection).toContainText('SIMD');
-    await expect(metadataSection).toContainText('HNSW');
 
     // Quantified metrics
     const metricsSection = page.locator('[data-case-study-metrics="true"]');
     await expect(metricsSection).toBeVisible();
   });
 
-  test('/projects catalog lists all engineering projects', async ({ page }) => {
+  test('/projects catalog lists all 4 engineering projects', async ({ page }) => {
     const response = await page.goto('/projects');
     expect(response?.status()).toBe(200);
 
     const projectCards = page.locator('[data-project-card="true"]');
-    expect(await projectCards.count()).toBeGreaterThanOrEqual(3);
+    expect(await projectCards.count()).toBe(4);
   });
 });

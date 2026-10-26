@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://deepjh.com',
+  site: 'https://hereisdeepjh.dpdns.org',
   output: 'static',
   integrations: [tailwind(), mdx()],
   markdown: {

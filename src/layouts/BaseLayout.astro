@@ -1,29 +1,35 @@
 ---
 import '../styles/global.css';
 import ChromaticSubstrate from '../components/ChromaticSubstrate.astro';
+import LiquidLensFilter from '../components/LiquidLensFilter.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { isZhLocale } from '../utils/locale';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   article?: boolean;
+  lang?: string;
 }
 
+const isZh = isZhLocale(Astro.url.pathname);
+
 const {
-  title = 'DeepJH — Personal Engineering Showcase',
+  title = 'Hello, Im DeepJH.',
   description = "DeepJH's personal engineering showcase and technical publication platform featuring curated projects, deep case studies, and systems architecture essays.",
   image = '/og-image.png',
   article = false,
+  lang = isZh ? 'zh' : 'en',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://deepjh.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hereisdeepjh.dpdns.org');
 const formattedTitle = title.includes('DeepJH') ? title : `${title} — DeepJH`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,6 +77,7 @@ const formattedTitle = title.includes('DeepJH') ? title : `${title} — DeepJH`;
     class="relative flex min-h-screen flex-col bg-slate-50 text-zinc-800 transition-colors duration-300 selection:bg-sky-500/20 selection:text-sky-900 dark:bg-zinc-950 dark:text-zinc-100 dark:selection:text-sky-200"
   >
     <ChromaticSubstrate />
+    <LiquidLensFilter />
     <Header currentPath={Astro.url.pathname} />
 
     <main class="mx-auto w-full max-w-5xl flex-1 px-4 pt-10 pb-16 sm:px-6">
