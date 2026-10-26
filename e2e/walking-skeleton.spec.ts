@@ -14,6 +14,10 @@ test.describe('Issue #3: Walking Skeleton & Chromatic Liquid Glass Shell', () =>
     await expect(header.getByRole('link', { name: /DeepJH/i })).toBeVisible();
     await expect(header.getByRole('link', { name: /Projects/i })).toBeVisible();
     await expect(header.getByRole('link', { name: /Posts/i })).toBeVisible();
+    await expect(header.getByRole('link', { name: /GitHub/i })).toBeVisible();
+    await expect(header.getByRole('link', { name: /LinkedIn/i })).toBeVisible();
+    await expect(header.getByRole('link', { name: /Email/i })).toBeVisible();
+    await expect(header.getByRole('link', { name: /RSS/i })).toBeVisible();
 
     const main = page.locator('main');
     await expect(main).toBeVisible();

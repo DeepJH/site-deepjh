@@ -1,7 +1,7 @@
 ---
 title: "VectorFlow: SIMD-Accelerated Embedded Vector Search Index"
 description: "Cache-oblivious HNSW vector index engineered in C++20 and AVX-512 for sub-millisecond approximate nearest neighbor retrieval in embedded runtimes."
-coverImage: "/images/projects/vector-flow.png"
+coverImage: "/images/projects/vector-flow.svg"
 tags:
   - C++
   - SIMD

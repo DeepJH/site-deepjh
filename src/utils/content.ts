@@ -1,14 +1,29 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+interface PublishableEntry {
+  data: {
+    draft?: boolean;
+    publishDate: Date;
+  };
+}
+
+/**
+ * Generic helper to filter out drafts in production builds and
+ * sort entries chronologically by publishDate descending.
+ */
+function filterAndSortPublishedEntries<T extends PublishableEntry>(entries: T[]): T[] {
+  return entries
+    .filter((entry) => import.meta.env.DEV || !entry.data.draft)
+    .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+}
+
 /**
  * Returns all published projects, excluding drafts in production builds,
  * sorted chronologically by publishDate descending.
  */
 export async function getPublishedProjects(): Promise<CollectionEntry<'projects'>[]> {
   const projects = await getCollection('projects');
-  return projects
-    .filter((project) => import.meta.env.DEV || !project.data.draft)
-    .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+  return filterAndSortPublishedEntries(projects);
 }
 
 /**
@@ -25,7 +40,5 @@ export async function getFeaturedProjects(): Promise<CollectionEntry<'projects'>
  */
 export async function getPublishedPosts(): Promise<CollectionEntry<'posts'>[]> {
   const posts = await getCollection('posts');
-  return posts
-    .filter((post) => import.meta.env.DEV || !post.data.draft)
-    .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+  return filterAndSortPublishedEntries(posts);
 }

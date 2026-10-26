@@ -10,8 +10,8 @@ const projects = defineCollection({
     tags: z.array(z.string()),
     repoUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
-    role: z.string().optional().default('Systems Architect & Lead Engineer'),
-    timeline: z.string().optional().default('2026'),
+    role: z.string().optional(),
+    timeline: z.string().optional(),
     metrics: z
       .array(
         z.object({

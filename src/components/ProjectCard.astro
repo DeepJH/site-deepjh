@@ -7,16 +7,30 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, description, tags, repoUrl, demoUrl, metrics } = project.data;
+const { title, description, tags, coverImage, metrics } = project.data;
 ---
 
 <LiquidGlass
   as="article"
   hoverGlow={true}
-  class="flex flex-col justify-between p-6 sm:p-8"
+  class="flex flex-col justify-between overflow-hidden p-6 sm:p-8"
   data-project-card="true"
 >
   <div>
+    <!-- Cover Image (if present) -->
+    {
+      coverImage && (
+        <div class="mb-5 overflow-hidden rounded-xl border border-zinc-200/60 dark:border-zinc-800/80">
+          <img
+            src={coverImage}
+            alt={`${title} Architecture Visual`}
+            class="h-44 w-full object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+
     <!-- Tags -->
     <div class="mb-4 flex flex-wrap gap-1.5">
       {
@@ -62,43 +76,14 @@ const { title, description, tags, repoUrl, demoUrl, metrics } = project.data;
     }
   </div>
 
-  <!-- Actions: Case Study narrative link + verified external links -->
+  <!-- Dedicated Case Study Link -->
   <div class="mt-6 flex items-center justify-between border-t border-zinc-200/60 pt-4 dark:border-zinc-800/80">
     <a
       href={`/projects/${project.id}`}
       data-case-study-link="true"
-      class="inline-flex items-center gap-1 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-600 transition-colors hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
     >
-      Read Case Study &rarr;
+      Read Full Case Study &rarr;
     </a>
-
-    <div class="flex items-center gap-3">
-      {
-        repoUrl && (
-          <a
-            href={repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-            aria-label={`${title} Source Implementation`}
-          >
-            Source
-          </a>
-        )
-      }
-      {
-        demoUrl && (
-          <a
-            href={demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-            aria-label={`${title} Live Benchmark Environment`}
-          >
-            Live System
-          </a>
-        )
-      }
-    </div>
   </div>
 </LiquidGlass>

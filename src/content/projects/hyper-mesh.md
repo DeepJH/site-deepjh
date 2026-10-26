@@ -1,7 +1,7 @@
 ---
 title: "HyperMesh: Zero-Copy eBPF Service Mesh Data Plane"
 description: "High-throughput sidecarless network proxy leveraging Linux eBPF sockops to bypass kernel TCP stacks for intra-node microservice communications."
-coverImage: "/images/projects/hyper-mesh.png"
+coverImage: "/images/projects/hyper-mesh.svg"
 tags:
   - eBPF
   - C

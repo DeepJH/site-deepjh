@@ -34,6 +34,11 @@ test.describe('Issue #4: Curated Showcase & Project Case Studies', () => {
     await expect(metadataSection).toBeVisible();
     await expect(metadataSection).toContainText('Role & Timeline');
 
+    // Complete non-truncated architecture stack
+    await expect(metadataSection).toContainText('Architecture Stack');
+    await expect(metadataSection).toContainText('SIMD');
+    await expect(metadataSection).toContainText('HNSW');
+
     // Quantified metrics
     const metricsSection = page.locator('[data-case-study-metrics="true"]');
     await expect(metricsSection).toBeVisible();

@@ -35,7 +35,12 @@ test.describe('Issue #7: Production Edge Deployment & Full Seam Verification', (
     await expect(page.locator('h1')).toContainText('Technical Publications');
 
     // 5. Navigate to Demystifying io_uring
-    await page.getByRole('link', { name: /io_uring/i }).first().click();
+    await page
+      .locator('article[data-post-item="true"]')
+      .first()
+      .locator('a[data-post-link="true"]')
+      .first()
+      .click();
     await expect(page).toHaveURL('/posts/io-uring-linux-storage-engine');
 
     // 6. Navigate back Home

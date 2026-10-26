@@ -21,19 +21,21 @@ test.describe('Issue #5: Technical Publications & Build-Time Syntax Highlighting
     await expect(firstArticle.locator('time')).toBeVisible();
     await expect(firstArticle.locator('[data-reading-time="true"]')).toBeVisible();
 
-    // Tag filtering functionality
-    const linuxTagButton = page.locator('button[data-filter="Linux"]');
-    await expect(linuxTagButton).toBeVisible();
-    await linuxTagButton.click();
+    // Static zero-runtime JS tag filtering navigation
+    const linuxTagLink = page.locator('a[data-filter="Linux"]');
+    await expect(linuxTagLink).toBeVisible();
+    await linuxTagLink.click();
+    await expect(page).toHaveURL(/\/posts\/tag\/Linux/);
 
-    // Verify visible articles contain Linux tag
-    const visiblePosts = page.locator('article[data-post-item="true"]:not(.hidden)');
-    expect(await visiblePosts.count()).toBeGreaterThanOrEqual(1);
+    // Verify visible articles on tag page
+    const tagPageArticles = page.locator('article[data-post-item="true"]');
+    expect(await tagPageArticles.count()).toBeGreaterThanOrEqual(1);
 
     // Click 'All' filter restores full list
-    const allFilterButton = page.locator('button[data-filter="all"]');
-    await allFilterButton.click();
-    expect(await page.locator('article[data-post-item="true"]:not(.hidden)').count()).toBe(count);
+    const allFilterLink = page.locator('a[data-filter="all"]');
+    await allFilterLink.click();
+    await expect(page).toHaveURL('/posts');
+    expect(await page.locator('article[data-post-item="true"]').count()).toBe(count);
   });
 
   test('/posts/[slug] renders deep technical article with build-time syntax highlighting', async ({

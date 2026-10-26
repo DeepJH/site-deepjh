@@ -1,7 +1,7 @@
 ---
 title: "ChronosKV: Low-Latency Distributed LSM-Tree Storage Engine"
 description: "A crash-resilient distributed key-value store engineered in Rust with custom io_uring WAL logging, lock-free memtable skips, and Raft consensus."
-coverImage: "/images/projects/chronos-kv.png"
+coverImage: "/images/projects/chronos-kv.svg"
 tags:
   - Rust
   - Distributed Systems

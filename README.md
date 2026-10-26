@@ -36,4 +36,8 @@
 - [x] 领域模型确立 (`GLOSSARY.md`)
 - [x] 核心架构决策记录 (`docs/adr/0001` ~ `0004`)
 - [x] 首版功能规格确立 (`docs/specs/0001-first-version.md`)
-- [ ] 代码工程脚手架初始化与接缝测试 (待指令启动)
+- [x] 代码工程脚手架初始化与接缝测试
+- [x] Curated Showcase 与独立 Case Study 深度路由 (`/projects/[slug]`)
+- [x] 技术出版物归档与双模构建期语法高亮 (`/posts` 与 `/posts/[slug]`)
+- [x] RSS 2.0 聚合订阅、SEO 与零 FOUC 双模主题切换系统
+- [x] 编译期契约（`pnpm check`）与完整运行时 E2E 接缝测试验证（Playwright）

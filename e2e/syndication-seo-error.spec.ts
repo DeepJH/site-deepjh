@@ -10,6 +10,7 @@ test.describe('Issue #6: Syndication, SEO & Resilient Error Handling', () => {
     expect(xml).toContain('<title>DeepJH — Technical Publications</title>');
     expect(xml).toContain('Demystifying io_uring');
     expect(xml).toContain('Designing Zero-Copy Network Systems');
+    expect(xml).toContain('<link>https://deepjh.com/posts/io-uring-linux-storage-engine/</link>');
     expect(xml).not.toContain('DRAFT: Internal Work in Progress');
   });
 
