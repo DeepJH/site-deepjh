@@ -29,10 +29,11 @@
 
 @layer components {
   /* Authentic Liquid Glass Optical Warp Layer (Ported from rdev/liquid-glass-react) */
+  .glass__warp,
   .glass-warp {
     filter: url(#liquid-glass-refraction);
-    backdrop-filter: blur(9px) saturate(140%);
-    -webkit-backdrop-filter: blur(9px) saturate(140%);
+    backdrop-filter: blur(4.5px) saturate(140%);
+    -webkit-backdrop-filter: blur(4.5px) saturate(140%);
   }
 
   .liquid-glass-interactive,

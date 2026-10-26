@@ -30,30 +30,32 @@ const {
   ]}
   {...rest}
 >
-  <!-- Optical Background Warp Layer: handles refraction, blur, saturation, and glass bevel highlights -->
+  <!-- Optical Background Layer: pills receive liquid refraction filter, cards receive crystal backdrop blur -->
   <span
     aria-hidden="true"
     class:list={[
-      'glass-warp pointer-events-none absolute inset-0 -z-10 overflow-hidden',
-      pill ? 'rounded-full' : 'rounded-2xl',
-      // Crystalline transmittance tint matching Spec L33
-      'bg-white/35 dark:bg-zinc-900/40',
+      'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
+      pill
+        ? 'glass__warp glass-warp rounded-full'
+        : 'rounded-2xl backdrop-blur-[4.5px] saturate-[140%]',
+      // Crystalline high-transmittance tint (~88% transmittance, zero acrylic opacity)
+      'bg-white/12 dark:bg-zinc-900/18',
       // Specular rim border
-      'border border-white/80 dark:border-white/15',
+      'border border-white/60 dark:border-white/15',
       // Physical glass bevel inset highlight + soft ambient elevation shadow
-      'shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.95),inset_0_-1px_2px_0_rgba(0,0,0,0.03),0_8px_32px_0_rgba(0,0,0,0.05)]',
-      'dark:shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.2),inset_0_-1px_2px_0_rgba(0,0,0,0.4),0_8px_32px_0_rgba(0,0,0,0.35)]',
+      'shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.85),inset_0_-1px_1px_0_rgba(0,0,0,0.02),0_4px_20px_0_rgba(0,0,0,0.03)]',
+      'dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),inset_0_-1px_1px_0_rgba(0,0,0,0.3),0_4px_20px_0_rgba(0,0,0,0.25)]',
       'transition-all duration-300',
       hoverGlow && [
         'group-hover/glass:border-sky-300/80 dark:group-hover/glass:border-sky-500/40',
-        'group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,1),0_12px_36px_0_rgba(56,189,248,0.2)]',
-        'dark:group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.3),0_12px_36px_0_rgba(56,189,248,0.25)]',
+        'group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.9),0_8px_24px_0_rgba(56,189,248,0.16)]',
+        'dark:group-hover/glass:shadow-[inset_0_1px_2px_0_rgba(255,255,255,0.25),0_8px_24px_0_rgba(56,189,248,0.2)]',
       ],
     ]}
   >
     <!-- Surface tension sheen reflection (top-down micro specular gradient) -->
     <span
-      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/35 via-white/10 to-transparent dark:from-white/10 dark:via-transparent dark:to-transparent"
+      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/20 via-white/5 to-transparent dark:from-white/5 dark:via-transparent dark:to-transparent"
     ></span>
   </span>
 

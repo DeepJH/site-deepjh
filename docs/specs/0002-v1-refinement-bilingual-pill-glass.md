@@ -30,7 +30,8 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
     3. **Three-Channel Chromatic Aberration (RGB Split)**: Displace Red, Green, and Blue channels with independent scales and micro-offsets, recombining them via `<feBlend mode="screen">` to reproduce Apple-grade prismatic dispersion at pill rims.
     4. **DOM Layer Separation (`.glass__warp`)**: Cleanly separate the optical warp layer (`.glass__warp`) from foreground children, ensuring user text and icons remain razor-sharp while background substrates undergo realistic refraction.
     5. **Zero Client-Side JS Runtime**: Operate 100% via declarative SVG `<filter>` and CSS `backdrop-filter`/`filter` styling, preserving our zero-runtime JS baseline.
-  - Reduce blur to 75% (~9px) and adjust background opacity (`bg-white/35 dark:bg-zinc-900/40`) for crystalline transmittance and clarity.
+  - Reduce blur by 50% to **4.5px** (`backdrop-blur-[4.5px]`) and adjust background opacity to **12%** (`bg-white/12 dark:bg-zinc-900/18`) for crystal-clear, water-like transmittance without milky acrylic opacity.
+  - Re-tune SVG displacement scale to **-10 to -12** to eliminate dark fringe edge tearing artifacts along pill boundaries.
   - Boost Chromatic Substrate saturation by 120% (increase gradient glow opacity by 20% in `ChromaticSubstrate.astro`).
 
 - **Curated 2×2 Project Showcase**:
@@ -60,7 +61,7 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
 4. As a collaborator, I can find DeepJH's direct email (`deepjhshenjing@gmail.com`), GitHub link, and RSS feed in the header and footer, with no dead or unwanted links (e.g. LinkedIn removed).
 
 ### Visual Craft & Tactile Experience
-5. As an aesthetically minded visitor, I observe crystalline, pill-shaped (`rounded-full`) liquid glass elements with ~9px blur, high substrate transmittance, and high color vibrancy.
+5. As an aesthetically minded visitor, I observe crystalline, pill-shaped (`rounded-full`) liquid glass elements with ~4.5px blur, high substrate transmittance, and high color vibrancy.
 6. As an interactive visitor, when hovering over interactive buttons, I experience a subtle optical lens magnification and displacement refraction effect that renders smoothly without client-side JS runtime overhead.
 
 ### Project Showcase & Case Studies
@@ -88,14 +89,14 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
 ---
 
 ## Acceptance Criteria
-- [ ] DeepJH's avatar downloaded from GitHub to `public/avatar.png` and rendered in Header and Hero.
-- [ ] Title canonicalized to `Hello, Im DeepJH.` across layouts.
-- [ ] Contact details updated (domain `https://hereisdeepjh.dpdns.org`, email `deepjhshenjing@gmail.com`, LinkedIn removed).
-- [ ] Liquid Glass updated with pill morphology (`rounded-full`), 75% blur (~9px), crystalline transmittance, and 120% substrate saturation.
-- [ ] Authentic `rdev/liquid-glass-react` SVG filter pipeline implemented (displacement map, edge mask, 3-channel RGB chromatic aberration, DOM layer separation `.glass__warp`).
-- [ ] Foreground text and interactive controls remain sharp without distorted text glyphs.
-- [ ] 4 real projects implemented in Content Collections (`aitopschool-downloader`, `good-bye-othello`, `brief-clock`, `state-tuning-rwkv`) and displayed in 2×2 grid.
-- [ ] Flagship publication implemented linking to `DeepJH/text-note`.
-- [ ] Static bilingual routing (`/` and `/zh`) functional with header language toggle pill.
-- [ ] `pnpm astro check` & `tsc --noEmit` pass with zero errors.
-- [ ] Playwright E2E test suite updated and passing 100% against static preview.
+- [x] DeepJH's avatar downloaded from GitHub to `public/avatar.png` and rendered in Header and Hero.
+- [x] Title canonicalized to `Hello, Im DeepJH.` across layouts.
+- [x] Contact details updated (domain `https://hereisdeepjh.dpdns.org`, email `deepjhshenjing@gmail.com`, LinkedIn removed).
+- [x] Liquid Glass updated with pill morphology (`rounded-full`), 4.5px blur (50% reduction), ~88% crystalline transmittance (`bg-white/12 dark:bg-zinc-900/18`), and 120% substrate saturation.
+- [x] Authentic `rdev/liquid-glass-react` SVG filter pipeline tuned with displacement scale -10 to -12, edge mask, 3-channel RGB chromatic aberration, and DOM layer separation `.glass-warp`.
+- [x] Foreground text and interactive controls remain sharp without distorted text glyphs.
+- [x] 4 real projects implemented in Content Collections (`aitopschool-downloader`, `good-bye-othello`, `brief-clock`, `state-tuning-rwkv`) and displayed in 2×2 grid.
+- [x] Flagship publication implemented linking to `DeepJH/text-note`.
+- [x] Static bilingual routing (`/` and `/zh`) functional with header language toggle pill.
+- [x] `pnpm astro check` & `tsc --noEmit` pass with zero errors.
+- [x] Playwright E2E test suite updated and passing 100% against static preview.
