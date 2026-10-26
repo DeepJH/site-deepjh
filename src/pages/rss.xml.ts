@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
     title: 'DeepJH — Technical Publications',
     description:
       'Code-level technical essays, systems architecture deep dives, and distributed systems engineering by DeepJH.',
-    site: context.site || 'https://deepjh.com',
+    site: context.site || 'https://hereisdeepjh.dpdns.org',
     items: publishedPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.publishDate,
