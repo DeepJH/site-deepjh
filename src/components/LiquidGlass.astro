@@ -1,5 +1,5 @@
 ---
-// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005, 0007, 0008)
+// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005, 0007, 0008, 0009 & Spec 0008)
 // Decouples the optical background warp layer (.glass__warp / .glass-card) from foreground child content (.glass__content).
 
 interface Props {
@@ -31,26 +31,27 @@ const resolvedVariant: 'card' | 'pill' | 'bar' =
 
 const isPill = resolvedVariant === 'pill';
 const isBarVariant = resolvedVariant === 'bar';
+
+// Decouple morphology radius and optical layer selection (eliminates repeated switches)
+const radiusClass = isPill || isBarVariant ? 'rounded-full' : 'rounded-2xl';
+const opticalClass = isBarVariant ? 'glass-card' : 'glass__warp';
 ---
 
 <Component
   class:list={[
     'relative isolate group/glass',
-    isPill || isBarVariant ? 'rounded-full' : 'rounded-2xl',
+    radiusClass,
     className,
   ]}
   {...rest}
 >
-  <!-- Optical Background Layer: compact pills receive liquid refraction filter, wide bars & cards receive crystal backdrop blur -->
+  <!-- Optical Background Layer: cards & pills receive prominent liquid refraction, wide bars receive crystal backdrop blur -->
   <span
     aria-hidden="true"
     class:list={[
       'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
-      isPill
-        ? 'glass__warp rounded-full'
-        : isBarVariant
-          ? 'glass-card rounded-full'
-          : 'glass-card rounded-2xl',
+      opticalClass,
+      radiusClass,
       // Authentic zero-tint transparent base (100% optical refraction without milky acrylic wash)
       'bg-transparent',
       // Specular rim border
