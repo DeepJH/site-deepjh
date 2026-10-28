@@ -1,49 +1,62 @@
 ---
-// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005 & ADR 0007)
-// Decouples the optical background warp layer (.glass__warp) from foreground child content (.glass__content).
+// Authentic Liquid Glass Component (Ported from rdev/liquid-glass-react architecture per ADR 0005, 0007, 0008)
+// Decouples the optical background warp layer (.glass__warp / .glass-card) from foreground child content (.glass__content).
 
 interface Props {
-  as?: 'div' | 'section' | 'article' | 'nav';
+  as?: 'div' | 'section' | 'article' | 'nav' | 'header';
+  variant?: 'card' | 'pill' | 'bar';
+  pill?: boolean; // backwards compatibility
+  isBar?: boolean; // backwards compatibility
   class?: string;
   contentClass?: string;
   hoverGlow?: boolean;
-  pill?: boolean;
   id?: string;
   'data-case-study-meta'?: string;
 }
 
 const {
   as: Component = 'div',
+  variant,
+  pill = false,
+  isBar = false,
   class: className = '',
   contentClass = '',
   hoverGlow = false,
-  pill = false,
   ...rest
 } = Astro.props;
+
+// Morphology hierarchy: 'bar' (wide nav/banner), 'pill' (compact 1:1~3:1 refraction capsule), 'card' (2.5D elevation card)
+const resolvedVariant: 'card' | 'pill' | 'bar' =
+  variant ?? (isBar || Component === 'nav' ? 'bar' : pill ? 'pill' : 'card');
+
+const isPill = resolvedVariant === 'pill';
+const isBarVariant = resolvedVariant === 'bar';
 ---
 
 <Component
   class:list={[
     'relative isolate group/glass',
-    pill ? 'rounded-full' : 'rounded-2xl',
+    isPill || isBarVariant ? 'rounded-full' : 'rounded-2xl',
     className,
   ]}
   {...rest}
 >
-  <!-- Optical Background Layer: pills receive liquid refraction filter, cards receive crystal backdrop blur -->
+  <!-- Optical Background Layer: compact pills receive liquid refraction filter, wide bars & cards receive crystal backdrop blur -->
   <span
     aria-hidden="true"
     class:list={[
       'pointer-events-none absolute inset-0 -z-10 overflow-hidden',
-      pill
+      isPill
         ? 'glass__warp rounded-full'
-        : 'glass-card rounded-2xl',
+        : isBarVariant
+          ? 'glass-card rounded-full'
+          : 'glass-card rounded-2xl',
       // Authentic zero-tint transparent base (100% optical refraction without milky acrylic wash)
       'bg-transparent',
       // Specular rim border
       'border border-white/50 dark:border-white/15',
-      // Official rdev physical floating elevation shadow + specular bevel inset
-      'shadow-[0_12px_40px_rgba(0,0,0,0.18),inset_0_1px_1px_0_rgba(255,255,255,0.8)]',
+      // Official rdev physical floating elevation shadow + multi-bevel specular inset highlights
+      'shadow-[0_12px_40px_rgba(0,0,0,0.12),inset_0_1px_1px_0_rgba(255,255,255,0.7),inset_0_0_0_0.5px_rgba(255,255,255,0.4)]',
       'dark:shadow-[0_16px_50px_rgba(0,0,0,0.55),inset_0_1px_1px_0_rgba(255,255,255,0.15)]',
       'transition-all duration-300',
       hoverGlow && [

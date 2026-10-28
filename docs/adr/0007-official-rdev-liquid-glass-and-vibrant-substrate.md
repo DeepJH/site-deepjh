@@ -23,7 +23,7 @@ We decided to execute a ground-up rebuild of both the substrate and the liquid g
 4. **Zero-Runtime JS Baseline**: 100% pre-rendered Astro static HTML with declarative SVG `<filter>` and CSS.
 
 ## Status
-Accepted
+Superseded by [ADR 0008](./0008-liquid-glass-morphology-hierarchy-and-substrate-softening.md) (optical parameters and morphology hierarchy)
 
 ## Consequences
 - High-contrast chromatic refraction is instantly recognizable across all screen sizes and scrolling states.

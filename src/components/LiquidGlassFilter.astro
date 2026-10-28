@@ -47,11 +47,11 @@
       <!-- Center clean undisplaced original image -->
       <feOffset in="SourceGraphic" dx="0" dy="0" result="CENTER_ORIGINAL" />
 
-      <!-- Red Channel: official scale -64 -->
+      <!-- Red Channel: calibrated scale -24 -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-64"
+        scale="-24"
         xChannelSelector="R"
         yChannelSelector="B"
         result="RED_DISPLACED"
@@ -66,11 +66,11 @@
         result="RED_CHANNEL"
       />
 
-      <!-- Green Channel: official scale -70.4 (64 * -1.1) -->
+      <!-- Green Channel: calibrated scale -20 -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-70.4"
+        scale="-20"
         xChannelSelector="R"
         yChannelSelector="B"
         result="GREEN_DISPLACED"
@@ -85,11 +85,11 @@
         result="GREEN_CHANNEL"
       />
 
-      <!-- Blue Channel: official scale -76.8 (64 * -1.2) -->
+      <!-- Blue Channel: calibrated scale -16 -->
       <feDisplacementMap
         in="SourceGraphic"
         in2="DISPLACEMENT_MAP"
-        scale="-76.8"
+        scale="-16"
         xChannelSelector="R"
         yChannelSelector="B"
         result="BLUE_DISPLACED"

@@ -6,8 +6,9 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle theme"
-  class="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200/80 bg-white/70 text-zinc-700 shadow-sm backdrop-blur-[9px] liquid-glass-interactive transition-all duration-200 hover:border-zinc-300 hover:bg-white dark:border-zinc-700/80 dark:bg-zinc-800/70 dark:text-zinc-200 dark:hover:border-zinc-600 dark:hover:bg-zinc-800"
+  class="relative isolate inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/70 text-zinc-700 shadow-sm backdrop-blur-[7.2px] liquid-glass-interactive transition-all duration-200 hover:border-zinc-300 hover:bg-white dark:border-white/15 dark:bg-zinc-800/70 dark:text-zinc-200 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 overflow-hidden"
 >
+  <span aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 glass__warp rounded-full"></span>
   <!-- Sun Icon (visible in dark mode) -->
   <svg
     id="theme-toggle-light-icon"
