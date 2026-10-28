@@ -16,6 +16,7 @@ When working in this repository, always align with the following documented sour
    - [ADR 0006: Static Bilingual Routing and Digital Garden Syndication](./docs/adr/0006-bilingual-routing-and-digital-garden-syndication.md)
    - [ADR 0007: Official rdev Liquid Glass Rebuild and Vibrant Chromatic Substrate](./docs/adr/0007-official-rdev-liquid-glass-and-vibrant-substrate.md)
    - [ADR 0008: Liquid Glass Morphology Hierarchy and Substrate Softening](./docs/adr/0008-liquid-glass-morphology-hierarchy-and-substrate-softening.md)
+   - [ADR 0009: Prominent Liquid Glass Distortion and Lens Calibration](./docs/adr/0009-prominent-liquid-glass-distortion-and-lens-calibration.md)
 3. **Feature Specifications**: Read active specs under [`docs/specs/`](./docs/specs/). All scope, user stories, and acceptance criteria live here.
 
 ## 🧪 Testing Seam Principle
