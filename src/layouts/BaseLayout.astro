@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import ChromaticSubstrate from '../components/ChromaticSubstrate.astro';
-import LiquidLensFilter from '../components/LiquidLensFilter.astro';
+import LiquidGlassFilter from '../components/LiquidGlassFilter.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { isZhLocale } from '../utils/locale';
@@ -77,7 +77,7 @@ const formattedTitle = title.includes('DeepJH') ? title : `${title} — DeepJH`;
     class="relative flex min-h-screen flex-col bg-slate-50 text-zinc-800 transition-colors duration-300 selection:bg-sky-500/20 selection:text-sky-900 dark:bg-zinc-950 dark:text-zinc-100 dark:selection:text-sky-200"
   >
     <ChromaticSubstrate />
-    <LiquidLensFilter />
+    <LiquidGlassFilter />
     <Header currentPath={Astro.url.pathname} />
 
     <main class="mx-auto w-full max-w-5xl flex-1 px-4 pt-10 pb-16 sm:px-6">

@@ -22,11 +22,17 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
   - Position statement: *"Engineering autonomous agent workflows & high-craft full-stack web architectures."*
   - 3 Core Engineering Principles: Autonomous Workflows, Tactile Craft, Lean & Local-First.
 
-- **Liquid Glass Pill Morphology & Hover Lens Distortion**:
-  - Transition container styling from rounded rectangles to Pill Capsule Morphology (`rounded-full`) for navigation, badges, and interactive controls.
-  - Reduce blur to 75% (~9px) and adjust background opacity (`bg-white/35 dark:bg-zinc-900/40`) for crystalline transmittance and clarity.
+- **Authentic Liquid Glass Port (`rdev/liquid-glass-react`) & Pill Morphology**:
+  - Transition container styling to Pill Capsule Morphology (`rounded-full`) for navigation shells, badges, and interactive controls.
+  - Implement an authentic, zero-runtime architectural port of `rdev/liquid-glass-react`:
+    1. **Precomputed Displacement Normal Map**: Embed the high-fidelity spherical lens displacement normal map from `rdev/liquid-glass-react` into an SVG `<feImage>` filter instead of relying on chaotic procedural noise.
+    2. **Edge Masking (`EDGE_MASK`)**: Utilize `<feColorMatrix>` and radial mask compositions to concentrate refraction strictly along the capsule's curved perimeter, keeping the center crystalline and high-transmittance.
+    3. **Three-Channel Chromatic Aberration (RGB Split)**: Displace Red, Green, and Blue channels with independent scales and micro-offsets, recombining them via `<feBlend mode="screen">` to reproduce Apple-grade prismatic dispersion at pill rims.
+    4. **DOM Layer Separation (`.glass__warp`)**: Cleanly separate the optical warp layer (`.glass__warp`) from foreground children, ensuring user text and icons remain razor-sharp while background substrates undergo realistic refraction.
+    5. **Zero Client-Side JS Runtime**: Operate 100% via declarative SVG `<filter>` and CSS `backdrop-filter`/`filter` styling, preserving our zero-runtime JS baseline.
+  - Reduce blur by 50% to **4.5px** (`backdrop-blur-[4.5px]`) and adjust background opacity to **12%** (`bg-white/12 dark:bg-zinc-900/18`) for crystal-clear, water-like transmittance without milky acrylic opacity.
+  - Re-tune SVG displacement scale to **-10 to -12** to eliminate dark fringe edge tearing artifacts along pill boundaries.
   - Boost Chromatic Substrate saturation by 120% (increase gradient glow opacity by 20% in `ChromaticSubstrate.astro`).
-  - Implement button hover optical lens distortion (SVG `<feDisplacementMap>` + CSS scale transition) inspired by `rdev/liquid-glass-react` while strictly maintaining the Zero-Runtime JS Baseline.
 
 - **Curated 2×2 Project Showcase**:
   - Curate exactly 4 real GitHub projects in a balanced 2×2 grid:
@@ -55,7 +61,7 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
 4. As a collaborator, I can find DeepJH's direct email (`deepjhshenjing@gmail.com`), GitHub link, and RSS feed in the header and footer, with no dead or unwanted links (e.g. LinkedIn removed).
 
 ### Visual Craft & Tactile Experience
-5. As an aesthetically minded visitor, I observe crystalline, pill-shaped (`rounded-full`) liquid glass elements with ~9px blur, high substrate transmittance, and high color vibrancy.
+5. As an aesthetically minded visitor, I observe crystalline, pill-shaped (`rounded-full`) liquid glass elements with ~4.5px blur, high substrate transmittance, and high color vibrancy.
 6. As an interactive visitor, when hovering over interactive buttons, I experience a subtle optical lens magnification and displacement refraction effect that renders smoothly without client-side JS runtime overhead.
 
 ### Project Showcase & Case Studies
@@ -83,13 +89,14 @@ Refine **site-deepjh** with authentic identity metadata, static bilingual routin
 ---
 
 ## Acceptance Criteria
-- [ ] DeepJH's avatar downloaded from GitHub to `public/avatar.png` and rendered in Header and Hero.
-- [ ] Title canonicalized to `Hello, Im DeepJH.` across layouts.
-- [ ] Contact details updated (domain `https://hereisdeepjh.dpdns.org`, email `deepjhshenjing@gmail.com`, LinkedIn removed).
-- [ ] Liquid Glass updated with pill morphology (`rounded-full`), 75% blur (~9px), crystalline transmittance, and 120% substrate saturation.
-- [ ] Zero-runtime SVG displacement lens hover filter applied to interactive buttons.
-- [ ] 4 real projects implemented in Content Collections (`aitopschool-downloader`, `good-bye-othello`, `brief-clock`, `state-tuning-rwkv`) and displayed in 2×2 grid.
-- [ ] Flagship publication implemented linking to `DeepJH/text-note`.
-- [ ] Static bilingual routing (`/` and `/zh`) functional with header language toggle pill.
-- [ ] `pnpm astro check` & `tsc --noEmit` pass with zero errors.
-- [ ] Playwright E2E test suite updated and passing 100% against static preview.
+- [x] DeepJH's avatar downloaded from GitHub to `public/avatar.png` and rendered in Header and Hero.
+- [x] Title canonicalized to `Hello, Im DeepJH.` across layouts.
+- [x] Contact details updated (domain `https://hereisdeepjh.dpdns.org`, email `deepjhshenjing@gmail.com`, LinkedIn removed).
+- [x] Liquid Glass updated with pill morphology (`rounded-full`), 4.5px blur (50% reduction), ~88% crystalline transmittance (`bg-white/12 dark:bg-zinc-900/18`), and 120% substrate saturation.
+- [x] Authentic `rdev/liquid-glass-react` SVG filter pipeline tuned with displacement scale -10 to -12, edge mask, 3-channel RGB chromatic aberration, and DOM layer separation `.glass-warp`.
+- [x] Foreground text and interactive controls remain sharp without distorted text glyphs.
+- [x] 4 real projects implemented in Content Collections (`aitopschool-downloader`, `good-bye-othello`, `brief-clock`, `state-tuning-rwkv`) and displayed in 2×2 grid.
+- [x] Flagship publication implemented linking to `DeepJH/text-note`.
+- [x] Static bilingual routing (`/` and `/zh`) functional with header language toggle pill.
+- [x] `pnpm astro check` & `tsc --noEmit` pass with zero errors.
+- [x] Playwright E2E test suite updated and passing 100% against static preview.

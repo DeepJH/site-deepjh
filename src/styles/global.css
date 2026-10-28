@@ -28,11 +28,25 @@
 }
 
 @layer components {
-  .liquid-lens-btn {
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease, box-shadow 0.25s ease;
+  /* Authentic Liquid Glass Optical Warp Layer (Ported from rdev/liquid-glass-react per ADR 0007) */
+  .glass-card,
+  .glass__warp,
+  .glass-warp {
+    backdrop-filter: blur(7.2px) saturate(130%);
+    -webkit-backdrop-filter: blur(7.2px) saturate(130%);
   }
+
+  .glass__warp,
+  .glass-warp {
+    filter: url(#liquid-glass-refraction);
+  }
+
+  .liquid-glass-interactive,
+  .liquid-lens-btn {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  }
+  .liquid-glass-interactive:hover,
   .liquid-lens-btn:hover {
-    filter: url(#liquid-lens-distortion);
     transform: scale(1.03);
   }
 }

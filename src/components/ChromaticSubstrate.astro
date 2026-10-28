@@ -1,5 +1,6 @@
 ---
-// Chromatic Substrate: Ambient radial pastel gradient glows that provide optical refraction for Liquid Glass.
+// Chromatic Substrate: High-density, vibrant multi-point fluid gradients providing rich optical refraction for Liquid Glass.
+// Exact specified palette: Cyan #00D2FF, Deep Violet #7928CA, Sunset Amber #FF7700, Electric Rose #FF0080.
 ---
 
 <div
@@ -7,23 +8,28 @@
   aria-hidden="true"
   class="pointer-events-none fixed inset-0 -z-10 overflow-hidden transition-opacity duration-700 select-none"
 >
-  <!-- Top-left cyan/sky glow -->
+  <!-- Top-left vibrant cyan mesh -->
   <div
-    class="absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-sky-400/30 via-teal-300/18 to-transparent blur-3xl dark:from-cyan-900/25 dark:via-sky-950/20"
+    class="absolute -top-24 -left-20 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-[#00D2FF]/85 via-[#00D2FF]/70 to-transparent blur-3xl dark:from-[#00D2FF]/65 dark:via-[#7928CA]/50"
   ></div>
 
-  <!-- Top-right violet/rose glow -->
+  <!-- Top-center deep violet mesh (directly behind sticky header scroll path) -->
   <div
-    class="absolute -top-24 right-[-10%] h-[550px] w-[550px] rounded-full bg-gradient-to-bl from-purple-400/30 via-rose-300/18 to-transparent blur-3xl dark:from-purple-950/30 dark:via-fuchsia-950/20"
+    class="absolute -top-32 left-1/3 h-[550px] w-[550px] rounded-full bg-gradient-to-b from-[#7928CA]/80 via-[#FF0080]/70 to-transparent blur-3xl dark:from-[#7928CA]/60 dark:via-[#FF0080]/50"
   ></div>
 
-  <!-- Center subtle amber glow -->
+  <!-- Top-right radiant sunset amber mesh -->
   <div
-    class="absolute top-1/3 left-1/2 -translate-x-1/2 h-[450px] w-[600px] rounded-full bg-gradient-to-r from-amber-300/18 via-rose-200/12 to-transparent blur-3xl dark:from-amber-950/15 dark:via-rose-950/10"
+    class="absolute -top-20 -right-24 h-[650px] w-[650px] rounded-full bg-gradient-to-bl from-[#FF7700]/85 via-[#FF7700]/70 to-transparent blur-3xl dark:from-[#FF7700]/65 dark:via-[#FF0080]/50"
   ></div>
 
-  <!-- Bottom-center indigo/slate glow -->
+  <!-- Mid-page electric rose mesh -->
   <div
-    class="absolute -bottom-40 left-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-t from-indigo-300/24 via-sky-200/18 to-transparent blur-3xl dark:from-indigo-950/25 dark:via-slate-900/20"
+    class="absolute top-1/2 -left-28 -translate-y-1/2 h-[700px] w-[650px] rounded-full bg-gradient-to-r from-[#FF0080]/80 via-[#7928CA]/70 to-transparent blur-3xl dark:from-[#FF0080]/60 dark:via-[#7928CA]/50"
+  ></div>
+
+  <!-- Bottom-center deep violet / cyan foundation mesh -->
+  <div
+    class="absolute -bottom-36 left-1/2 -translate-x-1/2 h-[750px] w-[900px] rounded-full bg-gradient-to-t from-[#7928CA]/85 via-[#00D2FF]/70 to-transparent blur-3xl dark:from-[#7928CA]/65 dark:via-[#00D2FF]/50"
   ></div>
 </div>
